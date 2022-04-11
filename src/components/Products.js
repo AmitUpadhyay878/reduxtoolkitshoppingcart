@@ -5,18 +5,21 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import Typography from "@mui/material/Typography";
 
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../store/cartSlice";
 import { fetchProducts } from "../store/ProductSlice";
+import { STATUS } from "../store/ProductSlice";
+import Alert from '@mui/material/Alert';
 
 const Products = () => {
   const dispatch = useDispatch();
-  const { data, Status } = useSelector((state) => state.product);
-  const [loading, setloading] = useState(false);
-
-  const [products, setProducts] = useState([]);
+  const { data: products, Status } = useSelector((state) => state.product);
+  // const [loading, setloading] = useState(false);
+  // const [products, setProducts] = useState([]);
   useEffect(() => {
     dispatch(fetchProducts());
 
@@ -33,9 +36,13 @@ const Products = () => {
   const addToCart = (product) => {
     dispatch(add(product));
   };
-  if (loading) {
-    return <h1>Loading</h1>;
+  if (Status === STATUS.LOADING) {
+    return <CircularProgress />;
   }
+  if (Status === STATUS.ERROR) {
+    return <Alert severity="error">Server Error</Alert>
+  }
+
   return (
     <>
       <h2>Product List:</h2>
