@@ -40,25 +40,25 @@ const cartSlice = createSlice({
     remove(state, action) {
       return state.filter((item) => item.id !== action.payload);
     },
-    inc({ state, payload }) {
-
-        return state.map((item) =>{
-            if(item.id ===payload){
-                return{...item,qty:item.qty+1}
-            }
-            return item
-        })
+    inc( state, { payload }) {
+             console.log(state);
+      return state?.map((item) => {               
+        if (item.id === payload) {
+          return { ...item, qty: item.qty + 1 };
+        }
+        return item;
+      });
     },
-    dec({ state, payload }) {
-        return state.map((item) =>{
-            if(item.id ===payload){
-                return{...item,qty:item.qty-1}
-            }
-            return item
-        })
+    dec( state, {payload }) {
+      return state.map((item) => {
+        if (item.id === payload) {
+          return { ...item, qty: item.qty - 1 };
+        }
+        return item;
+      });
     },
   },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const { add, remove,inc,dec } = cartSlice.actions;
 export default cartSlice.reducer;
