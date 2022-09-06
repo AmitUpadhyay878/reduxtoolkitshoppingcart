@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../store/cartSlice";
 import { fetchProducts } from "../store/ProductSlice";
 import { STATUS } from "../store/ProductSlice";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Products = () => {
     return <CircularProgress />;
   }
   if (Status === STATUS.ERROR) {
-    return <Alert severity="error">Server Error</Alert>
+    return <Alert severity="error">Server Error</Alert>;
   }
 
   return (
@@ -71,7 +71,7 @@ const Products = () => {
                     onClick={() => addToCart({ qty: 1, ...product })}
                     style={{ color: "#333C83" }}
                   >
-                    Add To Cart
+                    Add To Cartttt
                   </Button>
                   <Button size="small" style={{ color: "#FF8080" }}>
                     Remove
